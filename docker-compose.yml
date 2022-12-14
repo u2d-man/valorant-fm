@@ -1,0 +1,51 @@
+version: "3"
+services:
+  app:
+    tty: true
+    build:
+      context: .
+      # PHP用dockerfileの配置パス
+      dockerfile: ./docker/php/Dockerfile
+    volumes:
+      - ./app:/var/www/html
+
+  web:
+    build:
+      context: .
+      dockerfile: ./docker/nginx/Dockerfile
+    ports:
+      - target: 80
+        published: ${WEB_PUBLISHED_PORT:-80}
+        protocol: tcp
+        mode: host
+    volumes:
+      - type: bind
+        source: ./app
+        target: /var/www/html
+
+  mysql:
+    platform: linux/x86_64
+    build:
+      context: .
+      # MySQL用dockerfileの配置パス
+      dockerfile: ./docker/mysql/Dockerfile
+    ports:
+      - 3306:3306
+    volumes: # データ永続化
+    # MySQL Database初期化用SQLを./mysql/sqlに配置します。
+    #  - ./mysql/sql:/docker-entrypoint-initdb.d
+    # MySQLの内容を./dataディレクトリに保持します。
+      - ./docker/mysql/data:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_USER: root
+      # Rootユーザーを、パスワードなしでMySQLへのログインを許可します。
+      MYSQL_ALLOW_EMPTY_PASSWORD: 'yes'
+      # MySQLのRootユーザーのパスワードを設定する場合は、
+      # MYSQL_ALLOW_EMPTY_PASSWORDをコメントアウトし、MYSQL_ROOT_PASSWORDでパスワードを指定します。
+      # MYSQL_ROOT_PASSWORD: root
+      # Database名称の指定
+      MYSQL_DATABASE: db
+      # 作業用MySQLユーザー名称の指定
+      MYSQL_USER: db_docker
+      # 作業用MySQLユーザーパスワードの指定
+      MYSQL_PASSWORD: password

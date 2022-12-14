@@ -1,0 +1,14 @@
+{
+    "require": {
+        "twig/twig": "^3.3",
+        "slim/slim": "^4.10",
+        "slim/psr7": "^1.5",
+        "slim/twig-view": "^3.3",
+        "guzzlehttp/guzzle": "^7.5"
+    },
+    "autoload": {
+        "psr-4": {
+            "WebApp\\": "./app"
+        }
+    }
+}
