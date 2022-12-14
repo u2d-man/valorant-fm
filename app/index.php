@@ -40,7 +40,7 @@ $app->run();
 
 function sampleAPIRequest(Client $client)
 {
-    $options['headers'] = ['X-Riot-Token' => 'RGAPI-f8f50b15-a89f-4523-8edc-c83a31aa2a31'];
+    $options['headers'] = ['X-Riot-Token' => ''];
     $response = $client->request('GET', 'https://asia.api.riotgames.com/riot/account/v1/accounts/by-riot-id/DavyElton/8585', $options);
 
     return json_decode($response->getBody()->getContents(), true);
