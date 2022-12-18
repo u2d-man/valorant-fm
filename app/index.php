@@ -2,20 +2,33 @@
 
 require 'vendor/autoload.php';
 
+use DI\Container;
 use GuzzleHttp\Client;
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
 use Slim\Factory\AppFactory;
+use Slim\Views\Twig;
+use Twig\Loader\FilesystemLoader;
 
+$container = new Container();
+AppFactory::setContainer($container);
 $app = AppFactory::create();
 $app->addRoutingMiddleware();
 
 $client = new Client();
 
-$app->get('/', function (Request $request, Response $response, array $args) {
-    $response->getBody()->write("Hello, world");
+$container->set('twig', function() {
+    $loader = new FilesystemLoader("./Views");
 
-    return $response;
+    return new Twig($loader, ['debug' => true]);
+});
+
+$app->get('/', function (Request $request, Response $response, array $args) {
+    $assign['first'] = 'Elton';
+    $assign['last'] = 'Davy';
+    $view = $this->get('twig');
+
+    return $view->render($response, 'index.twig', $assign);
 });
 
 $app->get('/hello', function (Request $request, Response $response) {
