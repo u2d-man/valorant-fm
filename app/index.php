@@ -6,6 +6,8 @@ use GuzzleHttp\Client;
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
 use Slim\Factory\AppFactory;
+use Slim\Views\Twig;
+use Twig\Loader\FilesystemLoader;
 
 $app = AppFactory::create();
 $app->addRoutingMiddleware();
@@ -13,9 +15,10 @@ $app->addRoutingMiddleware();
 $client = new Client();
 
 $app->get('/', function (Request $request, Response $response, array $args) {
-    $response->getBody()->write("Hello, world");
+    $loader = new FilesystemLoader("./Views");
+    $view = new Twig($loader);
 
-    return $response;
+    return $view->render($response, 'index.html');
 });
 
 $app->get('/hello', function (Request $request, Response $response) {
