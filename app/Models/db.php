@@ -1,6 +1,6 @@
 <?php
 
-namespace WebApp\Models;
+namespace ValorantFM\Models;
 
 use PDO;
 

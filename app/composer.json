@@ -8,7 +8,12 @@
     },
     "autoload": {
         "psr-4": {
-            "WebApp\\": "./app"
+            "ValorantFM\\": "./app"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "ValorantFM\\Tests\\": "./tests"
         }
     }
 }
