@@ -7,6 +7,7 @@ use GuzzleHttp\Client;
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
 use Slim\Factory\AppFactory;
+use Slim\Psr7\UploadedFile;
 use Slim\Views\Twig;
 use Twig\Loader\FilesystemLoader;
 
@@ -17,6 +18,9 @@ $app->addRoutingMiddleware();
 
 $client = new Client();
 
+const SAVE_IMAGE_PATH = __DIR__ . '/public/images/';
+const DISPLAY_IMAGE_PATH = '/public/images/';
+
 $container->set('twig', function() {
     $loader = new FilesystemLoader("./Views");
 
@@ -26,6 +30,14 @@ $container->set('twig', function() {
 $app->get('/', function (Request $request, Response $response, array $args) {
     $assign['first'] = 'Elton';
     $assign['last'] = 'Davy';
+    $view = $this->get('twig');
+
+    return $view->render($response, 'index.twig', $assign);
+});
+
+$app->post('/upload_file', function (Request $request, Response $response) {
+    $getFile = $request->getUploadedFiles();
+    $assign['file_path'] = DISPLAY_IMAGE_PATH . moveUploadedFile(SAVE_IMAGE_PATH, $getFile['test_file']);
     $view = $this->get('twig');
 
     return $view->render($response, 'index.twig', $assign);
@@ -57,4 +69,15 @@ function sampleAPIRequest(Client $client)
     $response = $client->request('GET', 'https://asia.api.riotgames.com/riot/account/v1/accounts/by-riot-id/DavyElton/8585', $options);
 
     return json_decode($response->getBody()->getContents(), true);
+}
+
+function moveUploadedFile($directory, UploadedFile $uploadedFile)
+{
+    $extension = pathinfo($uploadedFile->getClientFilename(), PATHINFO_EXTENSION);
+    // $basename = bin2hex(random_bytes(8)); // see http://php.net/manual/en/function.random-bytes.php
+    $filename = 'valorant-fm.' . $extension;
+
+    $uploadedFile->moveTo($directory . DIRECTORY_SEPARATOR . $filename);
+
+    return $filename;
 }
