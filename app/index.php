@@ -16,8 +16,6 @@ AppFactory::setContainer($container);
 $app = AppFactory::create();
 $app->addRoutingMiddleware();
 
-$client = new Client();
-
 const SAVE_IMAGE_PATH = __DIR__ . '/public/images/';
 const DISPLAY_IMAGE_PATH = '/public/images/';
 
@@ -25,6 +23,9 @@ $container->set('twig', function() {
     $loader = new FilesystemLoader("./Views");
 
     return new Twig($loader, ['debug' => true]);
+});
+$container->set('guzzleClient', function () {
+    return new Client();
 });
 
 $app->get('/', function (Request $request, Response $response, array $args) {
@@ -38,9 +39,10 @@ $app->get('/', function (Request $request, Response $response, array $args) {
 $app->post('/upload_file', function (Request $request, Response $response) {
     $getFile = $request->getUploadedFiles();
     $assign['file_path'] = DISPLAY_IMAGE_PATH . moveUploadedFile(SAVE_IMAGE_PATH, $getFile['test_file']);
-    $view = $this->get('twig');
 
-    return $view->render($response, 'index.twig', $assign);
+    return $response
+        ->withHeader('Location', '/')
+        ->withStatus(200);
 });
 
 $app->get('/hello', function (Request $request, Response $response) {
@@ -49,27 +51,7 @@ $app->get('/hello', function (Request $request, Response $response) {
     return $response;
 });
 
-$app->get('/riot-me', function (Request $request, Response $response) use ($client) {
-    $apiResponse = sampleAPIRequest($client);
-    $puuid = '';
-    if (is_array($apiResponse)) {
-        $puuid = $apiResponse['puuid'];
-    }
-
-    $response->getBody()->write("valorant puuid: $puuid");
-
-    return $response;
-});
-
 $app->run();
-
-function sampleAPIRequest(Client $client)
-{
-    $options['headers'] = ['X-Riot-Token' => ''];
-    $response = $client->request('GET', 'https://asia.api.riotgames.com/riot/account/v1/accounts/by-riot-id/DavyElton/8585', $options);
-
-    return json_decode($response->getBody()->getContents(), true);
-}
 
 function moveUploadedFile($directory, UploadedFile $uploadedFile)
 {
