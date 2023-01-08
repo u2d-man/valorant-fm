@@ -33,7 +33,7 @@ $app->get('/', function (Request $request, Response $response, array $args) {
     $assign['last'] = 'Davy';
     $view = $this->get('twig');
 
-    return $view->render($response, 'index.twig', $assign);
+    return $view->render($response, 'index.html', $assign);
 });
 
 $app->post('/upload_file', function (Request $request, Response $response) {
