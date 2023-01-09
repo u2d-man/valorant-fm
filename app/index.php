@@ -19,6 +19,7 @@ $app->addRoutingMiddleware();
 const SAVE_IMAGE_PATH = __DIR__ . '/public/images/';
 const DISPLAY_IMAGE_PATH = '/public/images/';
 
+// create container
 $container->set('twig', function() {
     $loader = new FilesystemLoader("./Views");
 
