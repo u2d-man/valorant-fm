@@ -65,10 +65,25 @@
           data-mdb-ripple-color="light"
           href="#!"
           role="button"
-          >Get started</a
+          >UPLOAD</a
         >
       </div>
       <!-- Jumbotron -->
     </header>
+
+    <div class="container" mx-auto>
+      <div class="grid grid-cols-4 gap-4">
+        {% for hoge in 1..10 %}
+        <div class="bg-indigo-300">
+          <img class="object-fill h-48 w-96" src="../public/images/valorant-fm.png">
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+    <!-- <div class="container" max-auto>
+      <div class="bg-indigo-300">
+        <img class="object-fill h-48 w-96" src="../public/images/valorant-fm.png">
+      </div>
+    </div> -->
   </body>
 </html>
