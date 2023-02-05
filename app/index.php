@@ -22,7 +22,7 @@ const SAVE_IMAGE_PATH = __DIR__ . '/public/images/';
 const DISPLAY_IMAGE_PATH = '/public/images/';
 
 $container->set('twig', function() {
-    $loader = new FilesystemLoader("./webapp/Views");
+    $loader = new FilesystemLoader("./webapp/views");
 
     return new Twig($loader, ['debug' => true]);
 });
