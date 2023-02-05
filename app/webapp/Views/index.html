@@ -1,13 +1,89 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link href="views/css/index.css" rel="stylesheet">
-</head>
-<body>
-  <h1 class="text-3xl font-bold">
-    Hello world!
-  </h1>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link href="/webapp/views/css/index.css" rel="stylesheet" />
+  </head>
+  <body>
+    <header>
+      <!-- Navbar -->
+      <nav
+        class="relative flex items-center justify-between w-full py-2 bg-white shadow-md navbar navbar-expand-lg"
+      >
+        <div class="flex flex-wrap items-center justify-between w-full px-6">
+          <ul class="mr-auto navbar-nav lg:flex lg:flex-row">
+            <li class="nav-item">
+              <a
+                class="block py-2 pr-2 text-gray-600 transition duration-150 ease-in-out nav-link lg:px-2 hover:text-gray-700 focus:text-gray-700"
+                href="#!"
+                data-mdb-ripple="true"
+                data-mdb-ripple-color="light"
+                >Home</a
+              >
+            </li>
+            <li class="nav-item">
+              <a
+                class="block py-2 pr-2 text-gray-600 transition duration-150 ease-in-out nav-link lg:px-2 hover:text-gray-700 focus:text-gray-700"
+                href="#!"
+                data-mdb-ripple="true"
+                data-mdb-ripple-color="light"
+                >Features</a
+              >
+            </li>
+            <li class="nav-item">
+              <a
+                class="block py-2 pr-2 text-gray-600 transition duration-150 ease-in-out nav-link lg:px-2 hover:text-gray-700 focus:text-gray-700"
+                href="#!"
+                data-mdb-ripple="true"
+                data-mdb-ripple-color="light"
+                >Pricing</a
+              >
+            </li>
+            <li class="mb-2 nav-item lg:mb-0">
+              <a
+                class="block py-2 pr-2 text-gray-600 transition duration-150 ease-in-out nav-link lg:px-2 hover:text-gray-700 focus:text-gray-700"
+                href="#!"
+                data-mdb-ripple="true"
+                data-mdb-ripple-color="light"
+                >About</a
+              >
+            </li>
+          </ul>
+        </div>
+      </nav>
+      <!-- Navbar -->
+
+      <!-- Jumbotron -->
+      <div class="px-6 py-20 text-center text-gray-800 bg-gray-50">
+        <h1 class="mt-0 mb-6 text-5xl font-bold">{{ last }} {{ first }}</h1>
+        <h3 class="mb-8 text-3xl font-bold">Subeading</h3>
+        <a
+          class="inline-block px-6 py-2.5 bg-blue-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out"
+          data-mdb-ripple="true"
+          data-mdb-ripple-color="light"
+          href="#!"
+          role="button"
+          >UPLOAD</a
+        >
+      </div>
+      <!-- Jumbotron -->
+    </header>
+
+    <div class="container" mx-auto>
+      <div class="grid grid-cols-4 gap-4">
+        {% for hoge in 1..10 %}
+        <div class="bg-indigo-300">
+          <img class="object-fill h-48 w-96" src="../public/images/valorant-fm.png">
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+    <!-- <div class="container" max-auto>
+      <div class="bg-indigo-300">
+        <img class="object-fill h-48 w-96" src="../public/images/valorant-fm.png">
+      </div>
+    </div> -->
+  </body>
 </html>

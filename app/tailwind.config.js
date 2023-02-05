@@ -2,7 +2,9 @@
 module.exports = {
   content: ["./webapp/views/*.{html,js}"],
   theme: {
-    extend: {},
+    container: {
+      center: true,
+    },
   },
   plugins: [],
 }
