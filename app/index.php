@@ -10,6 +10,8 @@ use Slim\Factory\AppFactory;
 use Slim\Psr7\UploadedFile;
 use Slim\Views\Twig;
 use Twig\Loader\FilesystemLoader;
+use ValorantFM\Controllers\HomeController;
+use ValorantFM\Models\DB;
 
 $container = new Container();
 AppFactory::setContainer($container);
@@ -21,7 +23,7 @@ const DISPLAY_IMAGE_PATH = '/public/images/';
 
 // create container
 $container->set('twig', function() {
-    $loader = new FilesystemLoader("./Views");
+    $loader = new FilesystemLoader("./webapp/views");
 
     return new Twig($loader, ['debug' => true]);
 });
@@ -29,13 +31,7 @@ $container->set('guzzleClient', function () {
     return new Client();
 });
 
-$app->get('/', function (Request $request, Response $response, array $args) {
-    $assign['first'] = 'Elton';
-    $assign['last'] = 'Davy';
-    $view = $this->get('twig');
-
-    return $view->render($response, 'index.html', $assign);
-});
+$app->get('/', HomeController::class . ':index');
 
 $app->post('/upload_file', function (Request $request, Response $response) {
     $getFile = $request->getUploadedFiles();

@@ -700,6 +700,7 @@ video {
 
 .font-bold {
   font-weight: 700;
+<<<<<<< HEAD:app/Views/css/index.css
 }
 
 .font-medium {
@@ -823,3 +824,6 @@ video {
     padding-right: 0.5rem;
   }
 }
+=======
+}
+>>>>>>> main:app/webapp/Views/css/index.css
