@@ -11,7 +11,6 @@ use Slim\Psr7\UploadedFile;
 use Slim\Views\Twig;
 use Twig\Loader\FilesystemLoader;
 use ValorantFM\Controllers\HomeController;
-use ValorantFM\Models\DB;
 
 $container = new Container();
 AppFactory::setContainer($container);

@@ -5,7 +5,6 @@ namespace ValorantFM\Controllers;
 use DI\Container;
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
-use Slim\Views\Twig;
 
 class HomeController
 {
@@ -21,6 +20,6 @@ class HomeController
         $assign['last'] = 'Davy';
         $view = $this->container->get('twig');
 
-        return $view->render($response, 'index.html', $assign);
+        return $view->render($response, 'index.html', $args);
     }
 }
