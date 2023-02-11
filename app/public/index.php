@@ -23,7 +23,7 @@ $container->set('twig', function() {
 });
 
 // service container
-$container->set('UploaderService', function() {
+$container->set('uploaderService', function() {
     return new UploaderService();
 });
 

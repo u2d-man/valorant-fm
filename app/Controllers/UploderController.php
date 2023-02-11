@@ -21,7 +21,7 @@ class UploaderController
     public function upload(Request $request, Response $response)
     {
         $getFile = $request->getUploadedFiles();
-        $service = $this->container->get('UploaderService');
+        $service = $this->container->get('uploaderService');
         $assign['file_path'] = self::DISPLAY_IMAGE_PATH . $service->moveUploadedFile(self::SAVE_IMAGE_PATH, $getFile['test_file']);
 
         return $response
