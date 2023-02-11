@@ -1,5 +1,5 @@
 parameters:
 	level: 4
 	paths:
-		- webapp
-		- webapp/tests
+		- ./
+		- /tests
