@@ -1,6 +1,6 @@
 <?php
 
-require 'vendor/autoload.php';
+require '../vendor/autoload.php';
 
 use DI\Container;
 use Slim\Factory\AppFactory;
@@ -17,7 +17,7 @@ $app->addRoutingMiddleware();
 
 // create container
 $container->set('twig', function() {
-    $loader = new FilesystemLoader("./webapp/views");
+    $loader = new FilesystemLoader("../views");
 
     return new Twig($loader, ['debug' => true]);
 });

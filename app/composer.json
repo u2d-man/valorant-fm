@@ -13,12 +13,12 @@
     },
     "autoload": {
         "psr-4": {
-            "ValorantFM\\": "./webapp"
+            "ValorantFM\\": "./"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "ValorantFM\\Tests\\": "./webapp/tests"
+            "ValorantFM\\Tests\\": "./tests"
         }
     }
 }
