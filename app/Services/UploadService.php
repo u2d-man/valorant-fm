@@ -4,7 +4,7 @@ namespace ValorantFM\Services;
 
 use Slim\Psr7\UploadedFile;
 
-class UploaderService
+class UploadService
 {
     /**
      * @param string $directory

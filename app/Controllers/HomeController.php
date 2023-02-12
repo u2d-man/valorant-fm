@@ -15,7 +15,8 @@ class HomeController
         $this->container = $container;
     }
 
-    public function index(Request $request, Response $response, array $args) {
+    public function index(Request $request, Response $response, array $args)
+    {
         $assign['first'] = 'Elton';
         $assign['last'] = 'Davy';
         $view = $this->container->get('twig');

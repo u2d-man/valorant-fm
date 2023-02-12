@@ -6,10 +6,10 @@ use DI\Container;
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
 
-class UploaderController
+class UploadController
 {
-    private const SAVE_IMAGE_PATH = __DIR__ . '/public/images/';
-    private const DISPLAY_IMAGE_PATH = '/public/images/';
+    private const SAVE_IMAGE_PATH = '../public/images/';
+    private const DISPLAY_IMAGE_PATH = '../public/images/';
 
     private Container $container;
 

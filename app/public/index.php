@@ -7,8 +7,8 @@ use Slim\Factory\AppFactory;
 use Slim\Views\Twig;
 use Twig\Loader\FilesystemLoader;
 use ValorantFM\Controllers\HomeController;
-use ValorantFM\Controllers\UploaderController;
-use ValorantFM\Services\UploaderService;
+use ValorantFM\Controllers\UploadController;
+use ValorantFM\Services\UploadService;
 
 $container = new Container();
 AppFactory::setContainer($container);
@@ -24,10 +24,10 @@ $container->set('twig', function() {
 
 // service container
 $container->set('uploaderService', function() {
-    return new UploaderService();
+    return new UploadService();
 });
 
 $app->get('/', HomeController::class . ':index');
-$app->post('/upload_file', UploaderController::class . ':upload');
+$app->post('/upload_file', UploadController::class . ':upload');
 
 $app->run();
