@@ -2,21 +2,23 @@
 
 namespace ValorantFM\Services;
 
-use Slim\Psr7\UploadedFile;
+use Psr\Http\Message\ServerRequestInterface as Request;
 
 class UploadService
 {
     /**
      * @param string $directory
-     * @param UploadedFile $uploadedFile
+     * @param Request $request
      * @return string
      */
-    public function moveUploadedFile(string $directory, UploadedFile $uploadedFile): string
+    public function moveUploadedFile(string $directory, Request $request): string
     {
-        $extension = pathinfo($uploadedFile->getClientFilename(), PATHINFO_EXTENSION);
+        $getFile = $request->getUploadedFiles();
+        $file = $getFile['test_file'];
+        $extension = pathinfo($file->getClientFilename(), PATHINFO_EXTENSION);
         $filename = 'valorant-fm.' . $extension;
 
-        $uploadedFile->moveTo($directory . DIRECTORY_SEPARATOR . $filename);
+        $file->moveTo($directory . DIRECTORY_SEPARATOR . $filename);
 
         return $filename;
     }
