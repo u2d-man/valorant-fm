@@ -14,9 +14,10 @@ class UploadService
     public function moveUploadedFile(string $directory, Request $request): string
     {
         $getFile = $request->getUploadedFiles();
-        $file = $getFile['test_file'];
+        $file = $getFile['files'];
         $extension = pathinfo($file->getClientFilename(), PATHINFO_EXTENSION);
-        $filename = 'valorant-fm.' . $extension;
+        $basename = bin2hex(random_bytes(8));
+        $filename = sprintf('%s.%0.8s', $basename, $extension);
 
         $file->moveTo($directory . DIRECTORY_SEPARATOR . $filename);
 
