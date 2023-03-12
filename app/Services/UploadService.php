@@ -16,11 +16,17 @@ class UploadService
         $getFile = $request->getUploadedFiles();
         $file = $getFile['files'];
         $extension = pathinfo($file->getClientFilename(), PATHINFO_EXTENSION);
-        $basename = bin2hex(random_bytes(8));
-        $filename = sprintf('%s.%0.8s', $basename, $extension);
+        $filename = $this->createUniqueFilename($extension);
 
         $file->moveTo($directory . DIRECTORY_SEPARATOR . $filename);
 
         return $filename;
+    }
+
+    private function createUniqueFilename(string $extension): string
+    {
+        $basename = bin2hex(random_bytes(8));
+
+        return sprintf('%s.%0.8s', $basename, $extension);
     }
 }
