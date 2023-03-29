@@ -1,4 +1,5 @@
-version: "3"
+version: '3.7'
+
 volumes:
   db-store:
 services:
@@ -9,7 +10,7 @@ services:
       # PHP用dockerfileの配置パス
       dockerfile: ./docker/php/Dockerfile
     volumes:
-      - ./app:/var/www/html
+      - ./:/var/www/html
 
   web:
     build:
@@ -22,7 +23,7 @@ services:
         mode: host
     volumes:
       - type: bind
-        source: ./app
+        source: ./
         target: /var/www/html
 
   db:
