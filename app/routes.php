@@ -20,6 +20,10 @@ return function (App $app) {
         return $response;
     });
 
+    $app->post('/api/upload_image', function (Request $request, Response $response) {
+        
+    });
+
     $app->group('/users', function (Group $group) {
         $group->get('', ListUsersAction::class);
         $group->get('/{id}', ViewUserAction::class);
