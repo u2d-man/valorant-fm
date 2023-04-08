@@ -12,13 +12,13 @@ class RegisterHandler
 {
     public function __construct(private UserRepositoryInterface $userRepository) {}
 
-    public function postRegister(Request $request, Response $response)
+    public function postRegister(Request $request, Response $response): bool
     {
         $loginId = $request->getHeader('login_id');
         $password = $request->getHeader('password');
         $name = $request->getHeader('name');
         $password = password_hash($password[0], PASSWORD_DEFAULT);
 
-        $result = $this->userRepository->InsertUser($loginId[0], $password[0], $name[0]);
+        return $this->userRepository->InsertUser($loginId[0], $password[0], $name[0]);
     }
 }

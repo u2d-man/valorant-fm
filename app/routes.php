@@ -21,7 +21,7 @@ return function (App $app) {
         return $response;
     });
 
-    $app->post('/api/registar', RegisterHandler::class . ':postRegister');
+    $app->post('/api/register', RegisterHandler::class . ':postRegister');
 
     $app->group('/users', function (Group $group) {
         $group->get('', ListUsersAction::class);

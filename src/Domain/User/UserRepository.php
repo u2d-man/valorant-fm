@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\Domain\User;
 
 use PDO;
-use App\Domain\User\UserRepositoryInterface;
+
 class UserRepository implements UserRepositoryInterface
 {
     public function __construct(private PDO $dbh) {}
