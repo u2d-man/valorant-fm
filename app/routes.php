@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 use App\Application\Actions\User\ListUsersAction;
 use App\Application\Actions\User\ViewUserAction;
+use App\Application\Handlers\AuthHandler;
 use App\Application\Handlers\RegisterHandler;
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
@@ -22,6 +23,7 @@ return function (App $app) {
     });
 
     $app->post('/api/register', RegisterHandler::class . ':postRegister');
+    $app->get('/api/auth', AuthHandler::class . ':auth');
 
     $app->group('/users', function (Group $group) {
         $group->get('', ListUsersAction::class);
