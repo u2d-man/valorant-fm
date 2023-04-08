@@ -22,7 +22,7 @@ return function (ContainerBuilder $containerBuilder) {
                     'level' => Logger::DEBUG,
                 ],
                 'database' => [
-                    'host' => getenv('MYSQL_HOST') ?: '127.0.0.1',
+                    'host' => getenv('MYSQL_HOST') ?: '172.28.0.2',
                     'port' => getenv('MYSQL_PORT') ?: '3306',
                     'database' => getenv('MYSQL_DBNAME') ?: 'db',
                     'user' => getenv('MYSQL_USER') ?: 'db_docker',

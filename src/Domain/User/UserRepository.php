@@ -15,7 +15,7 @@ class UserRepository implements UserRepositoryInterface
      */
     public function InsertUser(string $loginId, string $password, string $name): bool
     {
-        $stmt = $this->dbh->prepare("INERT INTO `users` (`login_id`, `password`, `name`) VALUES (?, ?, ?)");
+        $stmt = $this->dbh->prepare("INSERT INTO users (`login_id`, `password`, `name`) VALUES (?, ?, ?)");
 
         return $stmt->execute([$loginId, $password, $name]);
     }
