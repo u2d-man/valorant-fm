@@ -23,10 +23,11 @@ class UserRepository implements UserRepositoryInterface
     /*
      * {@inheritDoc}
      */
-    public function getUser(string $loginId, string $password): bool
+    public function getUser(string $loginId): array
     {
-        $stmt = $this->dbh->prepare("SELECT * FROM users WHERE `login_id` = ? AND `password` = ?");
+        $stmt = $this->dbh->prepare("SELECT * FROM users WHERE `login_id` = ?");
+        $stmt->execute([$loginId]);
 
-        return $stmt->execute([$loginId, $password]);
+        return $stmt->fetchAll();
     }
 }

@@ -5,19 +5,32 @@ declare(strict_types=1);
 namespace App\Application\Handlers;
 
 use App\Domain\User\UserRepositoryInterface;
+use Firebase\JWT\JWT;
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
 
 class AuthHandler
 {
 
+    const AUTH_KEY = '../hiding/ec256-public.pem';
+
     public function __construct(private UserRepositoryInterface $userRepository) {}
 
     public function auth(Request $request, Response $response): Response
     {
-        $headerAuthorization = $request->getHeader('Authorization');
+        $body = $request->getParsedBody();
+        $loginId = $body['login_id'];
+        $user = $this->userRepository->getUser($loginId);
+        $isVerify = password_verify($body['password'], $user[0]['password']);
 
-        $result = $this->userRepository->getUser();
+        if (!$isVerify) {
+            $newResponse = $response->withStatus(401);
+            $newResponse->getBody()->write('you are not signed in');
+
+            return $newResponse->withHeader('Content-Type', 'text/plain; charset=UTF-8');
+        }
+
+        $authKey = file_get_contents(self::AUTH_KEY);
 
         return $response;
     }

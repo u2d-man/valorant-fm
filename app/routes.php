@@ -23,7 +23,7 @@ return function (App $app) {
     });
 
     $app->post('/api/register', RegisterHandler::class . ':postRegister');
-    $app->get('/api/auth', AuthHandler::class . ':auth');
+    $app->post('/api/auth', AuthHandler::class . ':auth');
 
     $app->group('/users', function (Group $group) {
         $group->get('', ListUsersAction::class);

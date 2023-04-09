@@ -17,9 +17,8 @@ interface UserRepositoryInterface
 
     /**
      * @param string $loginId
-     * @param string $password
-     * 
-     * @return boolean
+     *
+     * @return array
      */
-    public function getUser(string $loginId, string $password): bool;
+    public function getUser(string $loginId): array;
 }
