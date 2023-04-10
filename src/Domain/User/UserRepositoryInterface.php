@@ -18,7 +18,7 @@ interface UserRepositoryInterface
     /**
      * @param string $loginId
      *
-     * @return array
+     * @return UserDto
      */
-    public function getUser(string $loginId): array;
+    public function getUser(string $loginId): UserDto;
 }

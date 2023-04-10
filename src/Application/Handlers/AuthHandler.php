@@ -20,8 +20,8 @@ class AuthHandler
     {
         $body = $request->getParsedBody();
         $loginId = $body['login_id'];
-        $user = $this->userRepository->getUser($loginId);
-        $isVerify = password_verify($body['password'], $user[0]['password']);
+        $userDto = $this->userRepository->getUser($loginId);
+        $isVerify = password_verify($body['password'], $userDto->getPassword());
 
         if (!$isVerify) {
             $newResponse = $response->withStatus(401);
@@ -32,7 +32,7 @@ class AuthHandler
 
         $payload = [
             'iss' => 'http://localhost',
-            'login_id' => $user[0]['login_id'],
+            'login_id' => $userDto->getLoginId(),
             'iat' => time(),
         ];
         $authKey = file_get_contents(self::AUTH_KEY);
