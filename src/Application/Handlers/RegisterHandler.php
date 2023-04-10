@@ -19,6 +19,9 @@ class RegisterHandler
 
         $_ = $this->userRepository->InsertUser($body['login_id'], $password, $body['name']);
 
-        return $response;
+        $responseBody = json_encode(['message' => 'success user created']);
+        $response->getBody()->write($responseBody);
+
+        return $response->withHeader('Content-Type', 'application/json; charset=UTF-8');
     }
 }

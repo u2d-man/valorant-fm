@@ -32,6 +32,7 @@
     },
     "require-dev": {
         "jangregor/phpstan-prophecy": "^1.0.0",
+        "mockery/mockery": "^1.5",
         "phpspec/prophecy-phpunit": "^2.0",
         "phpstan/extension-installer": "^1.2.0",
         "phpstan/phpstan": "^1.8",
