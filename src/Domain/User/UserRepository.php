@@ -4,17 +4,30 @@ declare(strict_types=1);
 
 namespace App\Domain\User;
 
-interface UserRepository
-{
-    /**
-     * @return User[]
-     */
-    public function findAll(): array;
+use PDO;
 
-    /**
-     * @param int $id
-     * @return User
-     * @throws UserNotFoundException
+class UserRepository implements UserRepositoryInterface
+{
+    public function __construct(private PDO $dbh) {}
+
+    /*
+     * {@inheritDoc}
      */
-    public function findUserOfId(int $id): User;
+    public function InsertUser(string $loginId, string $password, string $name): bool
+    {
+        $stmt = $this->dbh->prepare("INSERT INTO users (`login_id`, `password`, `name`) VALUES (?, ?, ?)");
+
+        return $stmt->execute([$loginId, $password, $name]);
+    }
+
+    /*
+     * {@inheritDoc}
+     */
+    public function getUser(string $loginId): array
+    {
+        $stmt = $this->dbh->prepare("SELECT * FROM users WHERE `login_id` = ?");
+        $stmt->execute([$loginId]);
+
+        return $stmt->fetchAll();
+    }
 }

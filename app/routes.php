@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 use App\Application\Actions\User\ListUsersAction;
 use App\Application\Actions\User\ViewUserAction;
+use App\Application\Handlers\AuthHandler;
+use App\Application\Handlers\RegisterHandler;
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
 use Slim\App;
@@ -19,6 +21,9 @@ return function (App $app) {
         $response->getBody()->write('Hello world!');
         return $response;
     });
+
+    $app->post('/api/register', RegisterHandler::class . ':postRegister');
+    $app->post('/api/auth', AuthHandler::class . ':auth');
 
     $app->group('/users', function (Group $group) {
         $group->get('', ListUsersAction::class);
