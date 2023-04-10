@@ -37,6 +37,15 @@
             'reference' => '9d94dc0154230ac39e5bf89398b324a86f63f765',
             'dev_requirement' => false,
         ),
+        'firebase/php-jwt' => array(
+            'pretty_version' => 'v6.4.0',
+            'version' => '6.4.0.0',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../firebase/php-jwt',
+            'aliases' => array(),
+            'reference' => '4dd1e007f22a927ac77da5a3fbb067b42d3bc224',
+            'dev_requirement' => false,
+        ),
         'jangregor/phpstan-prophecy' => array(
             'pretty_version' => '1.0.0',
             'version' => '1.0.0.0',

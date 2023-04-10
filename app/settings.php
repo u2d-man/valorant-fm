@@ -21,6 +21,13 @@ return function (ContainerBuilder $containerBuilder) {
                     'path' => isset($_ENV['docker']) ? 'php://stdout' : __DIR__ . '/../logs/app.log',
                     'level' => Logger::DEBUG,
                 ],
+                'database' => [
+                    'host' => getenv('MYSQL_HOST') ?: '172.28.0.2',
+                    'port' => getenv('MYSQL_PORT') ?: '3306',
+                    'database' => getenv('MYSQL_DBNAME') ?: 'db',
+                    'user' => getenv('MYSQL_USER') ?: 'db_docker',
+                    'password' => getenv('MYSQL_PASS') ?: 'password',
+                ],
             ]);
         }
     ]);
