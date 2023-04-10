@@ -24,9 +24,4 @@ return function (App $app) {
 
     $app->post('/api/register', RegisterHandler::class . ':postRegister');
     $app->post('/api/auth', AuthHandler::class . ':auth');
-
-    $app->group('/users', function (Group $group) {
-        $group->get('', ListUsersAction::class);
-        $group->get('/{id}', ViewUserAction::class);
-    });
 };
