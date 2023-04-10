@@ -30,8 +30,17 @@ class AuthHandler
             return $newResponse->withHeader('Content-Type', 'text/plain; charset=UTF-8');
         }
 
+        $payload = [
+            'iss' => 'http://localhost',
+            'login_id' => $user[0]['login_id'],
+            'iat' => time(),
+        ];
         $authKey = file_get_contents(self::AUTH_KEY);
+        $jwt = JWT::encode($payload, $authKey, 'HS256');
 
-        return $response;
+        $responsebody = json_encode(['token' => $jwt]);
+        $response->getBody()->write($responsebody);
+
+        return $response->withHeader('Content-Type', 'application/json; charset=UTF-8');
     }
 }
