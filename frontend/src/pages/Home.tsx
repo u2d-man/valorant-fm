@@ -1,5 +1,5 @@
 import Card from "components/Card"
-import LoginButton from "components/LoginButton"
+import Button from "components/Button"
 
 const Home = () => {
     return <LoginPage />
@@ -9,7 +9,7 @@ const LoginPage = () => {
     return (
         <div>
             <Card>
-                <LoginButton />
+                <Button label="Login" />
             </Card>
         </div>
     )
