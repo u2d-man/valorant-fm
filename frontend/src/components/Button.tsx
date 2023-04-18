@@ -15,7 +15,7 @@ const Button = ({
     ...buttonProps
 }: Props & ButtonProps) => {
     return (
-        <button className={'bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 border border-blue-700 rounded ' + 
+        <button className={'text-sm font-semibold leading-6 text-gray-900 ' +
             customClass
             } {...buttonProps}>
             {children ? children : label}
