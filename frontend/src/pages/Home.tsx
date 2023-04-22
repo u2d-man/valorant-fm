@@ -8,6 +8,8 @@ const Home = () => {
     return <LoginPage />
 }
 
+Modal.setAppElement('#root')
+
 const customStyles = {
     content: {
       top: '50%',
