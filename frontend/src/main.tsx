@@ -6,8 +6,8 @@ const root = createRoot(document.getElementById('root')!)
 
 root.render(
     <StrictMode>
-    {/* <StateContextProvider> */}
-      <App />
-    {/* </StateContextProvider> */}
-  </StrictMode>
+      {/* <StateContextProvider> */}
+        <App />
+      {/* </StateContextProvider> */}
+    </StrictMode>
 )

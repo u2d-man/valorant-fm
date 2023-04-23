@@ -15,7 +15,7 @@ const Button = ({
     ...buttonProps
 }: Props & ButtonProps) => {
     return (
-        <button className={'text-sm font-semibold leading-6 text-gray-900 ' +
+        <button className={'flex items-center justify-center focus:outline-none disabled:opacity-40 disabled:cursor-default ' +
             customClass
             } {...buttonProps}>
             {children ? children : label}

@@ -1,4 +1,3 @@
-import './App.css';
 import Home from 'pages/Home';
 import GuardedRoute from 'router/GuardedRoute';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
