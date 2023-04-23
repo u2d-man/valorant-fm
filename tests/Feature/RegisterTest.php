@@ -8,6 +8,7 @@ use App\Application\Actions\ActionPayload;
 use App\Domain\User\UserDto;
 use App\Domain\User\UserRepositoryInterface;
 use Tests\TestCase;
+use DI\Container;
 use Mockery;
 
 class RegisterTest extends TestCase
@@ -15,6 +16,8 @@ class RegisterTest extends TestCase
     public function testSuccessRegister()
     {
         $app = $this->getAppInstance();
+        /** @var Container $container */
+        $container = $app->getContainer();
 
         $userDto = new UserDto(
             id: 1,
@@ -28,7 +31,6 @@ class RegisterTest extends TestCase
             ->shouldReceive('getUser')
             ->andReturn($userDto);
 
-        // $container->set(UserRepositoryInterface::class, $userRepository->reveal());
         $request = $this->createRequest('POST', '/api/register');
         $response = $app->handle($request);
 
