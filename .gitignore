@@ -5,4 +5,4 @@
 docker/mysql/sql/
 hiding/
 
-logs/*
+logs/app.log
