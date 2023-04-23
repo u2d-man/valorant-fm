@@ -17,7 +17,7 @@ class RegisterHandler
         $body = $request->getParsedBody();
         $password = password_hash($body['password'], PASSWORD_DEFAULT);
 
-        $_ = $this->userRepository->InsertUser($body['login_id'], $password, $body['name']);
+        $_ = $this->userRepository->InsertUser($body['login_id'], $password, $body['login_id']);
 
         $responseBody = json_encode(['message' => 'success user created']);
         $response->getBody()->write($responseBody);
