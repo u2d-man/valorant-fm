@@ -1,1 +1,2 @@
 [2023-04-04T21:51:09.944314+09:00] slim-app.INFO: Users list was viewed. [] {"uid":"bb6706d"}
+[2023-04-23T14:32:26.981991+09:00] slim-app.ERROR: password or login_id is empty. [] {"uid":"a64fdbe"}

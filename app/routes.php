@@ -14,11 +14,6 @@ return function (App $app) {
         return $response;
     });
 
-    $app->get('/', function (Request $request, Response $response) {
-        $response->getBody()->write('Hello world!');
-        return $response;
-    });
-
     $app->post('/api/register', RegisterHandler::class . ':postRegister');
     $app->post('/api/auth', AuthHandler::class . ':auth');
 };
