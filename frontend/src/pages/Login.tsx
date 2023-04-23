@@ -35,7 +35,7 @@ const LoginPage = () => {
     const submit = async () => {
         try {
             const req: postRegisterRequest = {
-                id: id,
+                login_id: id,
                 password: password
             }
             await apis.postRegister(req)
