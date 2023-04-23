@@ -3,6 +3,8 @@ import Header from "components/Header"
 import Modal from "react-modal"
 import { useState } from "react"
 import TextField from "components/TextField"
+import apis, { postRegisterRequest } from "lib/apis"
+import { toast } from "react-hot-toast"
 
 Modal.setAppElement('#root')
 
@@ -30,6 +32,18 @@ const LoginPage = () => {
         setShow(false);
     }
 
+    const submit = async () => {
+        try {
+            const req: postRegisterRequest = {
+                id: id,
+                password: password
+            }
+            await apis.postRegister(req)
+        } catch (e: any) {
+            toast.error(e.response.data)
+        }
+    }
+
     return (
         <div>
             <Header>
@@ -50,7 +64,7 @@ const LoginPage = () => {
                     <TextField placeholder="plase input your password" value={ password } setValue={ setPassword } type="password" label="Your password" />
                 </div>
                 <div className="flex justify-end">
-                    <Button label="submit" customClass="mt-5" onClick={ () => {} }></Button>
+                    <Button label="submit" customClass="mt-5" onClick={ submit }></Button>
                 </div>
             </Modal>
         </div>

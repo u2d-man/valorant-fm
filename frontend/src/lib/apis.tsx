@@ -1,11 +1,12 @@
 import axios, { AxiosRequestConfig } from "axios";
 
+const baseUrl = 'http://localhost'
 class Apis {
     async postRegister(req: postRegisterRequest, axiosonfig?: AxiosRequestConfig) {
         const data = new FormData()
         data.append('id', req.id)
         data.append('password', req.password)
-        await axios.post<void>(`/api/register`, data, {
+        await axios.post<void>(`${baseUrl}/api/register`, data, {
             headers: { 'content-type': 'multipart/form-data' },
             ...axiosonfig
         })
