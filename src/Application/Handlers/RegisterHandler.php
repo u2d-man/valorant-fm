@@ -23,8 +23,10 @@ class RegisterHandler
         $body = $request->getParsedBody();
         if (!array_key_exists('login_id', $body) || !array_key_exists('password', $body)) {
             $this->logger->error('password or login_id is empty.');
+            $response->getBody()->write('forbidden');
 
-            return $response->withStatus(StatusCodeInterface::STATUS_FORBIDDEN);
+            return $response->withStatus(StatusCodeInterface::STATUS_FORBIDDEN)
+                ->withHeader('Content-Type', 'text/plain; charset=UTF-8');
         }
         $password = password_hash($body['password'], PASSWORD_DEFAULT);
 
