@@ -6,3 +6,5 @@ docker/mysql/sql/
 hiding/*
 
 logs/*
+
+vendor/
