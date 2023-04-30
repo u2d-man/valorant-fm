@@ -3,7 +3,7 @@ import Header from "components/Header"
 import Modal from "react-modal"
 import { useState } from "react"
 import TextField from "components/TextField"
-import apis, { postRegisterRequest } from "lib/apis"
+import apis, { postAuthRequest } from "lib/apis"
 import { toast } from "react-hot-toast"
 
 Modal.setAppElement('#root')
@@ -34,11 +34,11 @@ const LoginPage = () => {
 
     const submit = async () => {
         try {
-            const req: postRegisterRequest = {
+            const req: postAuthRequest = {
                 login_id: id,
                 password: password
             }
-            await apis.postRegister(req)
+            await apis.postAuth(req)
         } catch (e: any) {
             toast.error(e.response.data)
         }
