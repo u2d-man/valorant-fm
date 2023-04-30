@@ -3,6 +3,6 @@
 .DS_Store
 
 docker/mysql/sql/
-hiding/
+hiding/*
 
-logs/
+logs/*
