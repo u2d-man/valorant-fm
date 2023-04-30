@@ -38,7 +38,10 @@ const LoginPage = () => {
                 login_id: id,
                 password: password
             }
-            await apis.postAuth(req)
+            const response = await apis.postAuth(req)
+            if (response !== null && typeof response === "object") {
+                setShow(false)
+            }
         } catch (e: any) {
             toast.error(e.response.data)
         }
