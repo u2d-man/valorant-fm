@@ -1,2 +1,7 @@
 [2023-04-04T21:51:09.944314+09:00] slim-app.INFO: Users list was viewed. [] {"uid":"bb6706d"}
 [2023-04-23T14:32:26.981991+09:00] slim-app.ERROR: password or login_id is empty. [] {"uid":"a64fdbe"}
+[2023-04-30T16:50:51.297257+09:00] slim-app.ERROR: db error:Duplicate entry 'test3' for key 'login_id' [] {"uid":"3acb9d5"}
+[2023-04-30T16:53:29.653321+09:00] slim-app.ERROR: db error:Duplicate entry 'test3' for key 'login_id' [] {"uid":"cbf316f"}
+[2023-04-30T16:54:06.886633+09:00] slim-app.ERROR: db error:Duplicate entry 'test3' for key 'login_id' [] {"uid":"f0b98df"}
+[2023-04-30T16:54:13.539213+09:00] slim-app.ERROR: db error:Duplicate entry 'test3' for key 'login_id' [] {"uid":"8f93838"}
+[2023-04-30T17:01:38.792397+09:00] slim-app.ERROR: db error:Duplicate entry 'test3' for key 'login_id' [] {"uid":"ba4eebf"}
