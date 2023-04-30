@@ -34,4 +34,5 @@ return array(
     'DeepCopy\\' => array($vendorDir . '/myclabs/deep-copy/src/DeepCopy'),
     'DI\\' => array($vendorDir . '/php-di/php-di/src'),
     'App\\' => array($baseDir . '/src'),
+    '' => array($vendorDir . '/bryanjhv/slim-session/src'),
 );

@@ -6,9 +6,10 @@ namespace App\Application\Handlers;
 
 use App\Domain\User\UserRepositoryInterface;
 use Fig\Http\Message\StatusCodeInterface;
-use Firebase\JWT\JWT;
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
+use Firebase\JWT\JWT;
+use SlimSession\Helper as SessionHelper;
 use Psr\Log\LoggerInterface;
 use PDOException;
 
@@ -19,6 +20,7 @@ class AuthHandler
 
     public function __construct(
         private UserRepositoryInterface $userRepository,
+        private SessionHelper $session,
         private LoggerInterface $logger
     ) {}
 
@@ -51,6 +53,7 @@ class AuthHandler
         $jwt = JWT::encode($payload, $authKey, 'HS256');
 
         $responsebody = json_encode(['token' => $jwt]);
+        $this->session->set('user_id', $loginId);
         $response->getBody()->write($responsebody);
 
         return $response->withHeader('Content-Type', 'application/json; charset=UTF-8');

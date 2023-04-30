@@ -10,6 +10,15 @@
         'dev' => true,
     ),
     'versions' => array(
+        'bryanjhv/slim-session' => array(
+            'pretty_version' => '4.1.2',
+            'version' => '4.1.2.0',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../bryanjhv/slim-session',
+            'aliases' => array(),
+            'reference' => '475accbe38622199fa1729f3caf5a38af2cda8a2',
+            'dev_requirement' => false,
+        ),
         'cordoval/hamcrest-php' => array(
             'dev_requirement' => true,
             'replaced' => array(
