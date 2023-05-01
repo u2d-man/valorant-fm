@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace App\Domain\User;
 
+use phpDocumentor\Reflection\Types\Null_;
+
 interface UserRepositoryInterface
 {
     /**
@@ -18,7 +20,7 @@ interface UserRepositoryInterface
     /**
      * @param string $loginId
      *
-     * @return UserDto
+     * @return UserDto|null
      */
-    public function getUser(string $loginId): UserDto;
+    public function getUser(string $loginId): UserDto|null;
 }
