@@ -23,11 +23,15 @@ class UserRepository implements UserRepositoryInterface
     /*
      * {@inheritDoc}
      */
-    public function getUser(string $loginId): UserDto
+    public function getUser(string $loginId): UserDto|null
     {
         $stmt = $this->dbh->prepare("SELECT * FROM users WHERE `login_id` = ?");
         $stmt->execute([$loginId]);
         $user = $stmt->fetch();
+
+        if ($user === false) {
+            return null;
+        }
 
         return new UserDto(
             $user['id'],
