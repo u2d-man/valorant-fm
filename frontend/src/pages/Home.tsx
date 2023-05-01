@@ -1,8 +1,9 @@
 import LoginPage from "./Login"
 
 const Home = () => {
-    return <LoginPage />
+    return (
+        <LoginPage />
+    )
 }
-
 
 export default Home
