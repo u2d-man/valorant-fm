@@ -5,7 +5,6 @@ import { useState } from "react"
 import TextField from "components/TextField"
 import apis, { postAuthRequest } from "lib/apis"
 import { toast } from "react-hot-toast"
-import ImageDisplay from "components/ImageDisplay"
 
 Modal.setAppElement('#root')
 
@@ -56,7 +55,6 @@ const LoginPage = () => {
                     <Button label="LogIn" onClick={ openModal }/>
                 </div>
             </Header>
-            <ImageDisplay></ImageDisplay>
             <Modal
                 isOpen={ show }
                 onRequestClose={ closeModal }

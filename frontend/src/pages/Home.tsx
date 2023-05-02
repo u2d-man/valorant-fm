@@ -1,8 +1,12 @@
+import ImageGrid from "components/ImageGrid"
 import LoginPage from "./Login"
 
 const Home = () => {
     return (
-        <LoginPage />
+        <div>
+            <LoginPage />
+            <ImageGrid />
+        </div>
     )
 }
 
