@@ -6,6 +6,7 @@ use App\Application\Handlers\AuthHandler;
 use App\Application\Handlers\RegisterHandler;
 use App\Application\Handlers\UserMeHandler;
 use App\Application\Handlers\ContentsUploadHandler;
+use App\Application\Handlers\ImageFilesHandler;
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
 use Slim\App;
@@ -23,4 +24,5 @@ return function (App $app) {
 
     // content
     $app->post('/api/image_upload', ContentsUploadHandler::class . ':upload');
+    $app->get('/api/image_files', ImageFilesHandler::class . ':getImageFiles');
 };
