@@ -22,16 +22,16 @@ const useImageSelect = (onSelect: (file: File) => void) => {
         input.click()
     }
 
-    const destloy = () => {
+    const destroy = () => {
         input.removeEventListener('change', onChange)
     }
 
-    return { startSelect, destloy }
+    return { startSelect, destroy }
 }
 
 const UplaodFileButton = ({ image }: Props) => {
-    const { startSelect, destloy } = useImageSelect(image)
-    useEffect(() => destloy)
+    const { startSelect, destroy } = useImageSelect(image)
+    useEffect(() => destroy)
 
     return (
         <Button
