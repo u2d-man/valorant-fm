@@ -5,6 +5,7 @@ declare(strict_types=1);
 use App\Application\Handlers\AuthHandler;
 use App\Application\Handlers\RegisterHandler;
 use App\Application\Handlers\UserMeHandler;
+use App\Application\Handlers\ContentsUploadHandler;
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
 use Slim\App;
@@ -15,7 +16,11 @@ return function (App $app) {
         return $response;
     });
 
+    // authentication
     $app->post('/api/register', RegisterHandler::class . ':postRegister');
     $app->post('/api/auth', AuthHandler::class . ':auth');
     $app->get('/api/user/me', UserMeHandler::class . ':getUserMe');
+
+    // content
+    $app->post('/api/image_upload', ContentsUploadHandler::class . ':upload');
 };
