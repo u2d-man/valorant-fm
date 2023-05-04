@@ -3,7 +3,7 @@ import Header from "components/Header"
 import Modal from "react-modal"
 import { useState } from "react"
 import TextField from "components/TextField"
-import apis, { postAuthRequest } from "lib/apis"
+import apis, { PostAuthRequest } from "lib/apis"
 import { toast } from "react-hot-toast"
 
 Modal.setAppElement('#root')
@@ -34,7 +34,7 @@ const LoginPage = () => {
 
     const submit = async () => {
         try {
-            const req: postAuthRequest = {
+            const req: PostAuthRequest = {
                 login_id: id,
                 password: password
             }
@@ -51,8 +51,8 @@ const LoginPage = () => {
         <div>
             <Header>
                 <div className="flex justify-end">
-                    <Button label="SignUp" customClass="mr-5" onClick={ openModal }/>
-                    <Button label="LogIn" onClick={ openModal }/>
+                    <Button label="SignUp" customClass="mr-5 text-white" onClick={ openModal }/>
+                    <Button label="LogIn" customClass="text-white" onClick={ openModal }/>
                 </div>
             </Header>
             <Modal
