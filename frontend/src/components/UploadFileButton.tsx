@@ -8,7 +8,7 @@ interface Props {
 const useImageSelect = (onSelect: (file: File) => void) => {
     const input = document.createElement('input')
     input.type = 'file'
-    input.type = 'image/jpg'
+    input.accept = 'image/jpg'
 
     const onChange = () => {
         if (input.files && input.files[0]) {

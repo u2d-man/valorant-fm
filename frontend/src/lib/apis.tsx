@@ -30,7 +30,7 @@ class Apis {
         const formData = new FormData()
 
         if (req.image) {
-            formData.append('image', req.image)
+            formData.append('image', req.image, req.image.name)
         }
         const data = await axios.post<ApiResponse>(`${baseUrl}/api/image_upload`, formData, {
             headers: { 'content-type': 'multipart/form-data' },

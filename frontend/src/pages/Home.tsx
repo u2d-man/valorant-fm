@@ -15,7 +15,8 @@ const Home = () => {
             if (file) {
                 req.image = file
             }
-            await apis.postImage(req)
+            const response = await apis.postImage(req)
+            toast.success(response.data.message)
         } catch (e: any) {
             toast.error(e.response.data)
         }

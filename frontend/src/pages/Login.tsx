@@ -42,6 +42,7 @@ const LoginPage = () => {
             if (response !== null && typeof response === "object") {
                 setShow(false)
             }
+            toast.success('sign in success')
         } catch (e: any) {
             toast.error(e.response.data)
         }
