@@ -27,8 +27,8 @@ class ContentsUploadHandler
     public function upload(Request $request, Response $response): Response
     {
         $uploadedFiles = $request->getUploadedFiles();
-        if (isset($uploadedFiles['file'])) {
-            $imageFile = $uploadedFiles['file'];
+        if (isset($uploadedFiles['image'])) {
+            $imageFile = $uploadedFiles['image'];
 
             if ($imageFile->getError() !== UPLOAD_ERR_OK) {
                 $response->getBody()->write('Non-acceptable formats');

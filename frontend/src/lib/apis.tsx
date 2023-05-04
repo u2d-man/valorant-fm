@@ -3,7 +3,7 @@ import axios, { AxiosRequestConfig } from "axios";
 const baseUrl = 'http://localhost'
 
 class Apis {
-    async postRegister(req: postAuthRequest, axiosonfig?: AxiosRequestConfig) {
+    async postRegister(req: PostAuthRequest, axiosonfig?: AxiosRequestConfig) {
         const data = new FormData()
         data.append('login_id', req.login_id)
         data.append('password', req.password)
@@ -13,12 +13,26 @@ class Apis {
         })
     }
 
-    async postAuth(req: postAuthRequest, axiosconfig?: AxiosRequestConfig) {
+    async postAuth(req: PostAuthRequest, axiosconfig?: AxiosRequestConfig) {
         const formData = new FormData()
         formData.append('login_id', req.login_id)
         formData.append('password', req.password)
 
-        const data = await axios.post<authApiResponse>(`${baseUrl}/api/auth`, formData, {
+        const data = await axios.post<AuthApiResponse>(`${baseUrl}/api/auth`, formData, {
+            headers: { 'content-type': 'multipart/form-data' },
+            ...axiosconfig
+        })
+
+        return data
+    }
+
+    async postImage(req: PostImageRequest, axiosconfig?: AxiosRequestConfig) {
+        const formData = new FormData()
+
+        if (req.image) {
+            formData.append('image', req.image, req.image.name)
+        }
+        const data = await axios.post<ApiResponse>(`${baseUrl}/api/image_upload`, formData, {
             headers: { 'content-type': 'multipart/form-data' },
             ...axiosconfig
         })
@@ -30,15 +44,19 @@ class Apis {
 const apis = new Apis()
 export default apis
 
-export interface postAuthRequest {
+export interface PostAuthRequest {
     login_id: string
     password: string
 }
 
-export interface apiResponse {
+export interface PostImageRequest {
+    image?: File
+}
+
+export interface ApiResponse {
     message: string
 }
 
-export interface authApiResponse {
+export interface AuthApiResponse {
     token: string
 }
