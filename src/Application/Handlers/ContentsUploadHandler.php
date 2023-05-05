@@ -41,6 +41,11 @@ class ContentsUploadHandler
             $filename = $this->createUniqueFilename($extension);
 
             $imageFile->moveTo(self::IMAGEFILE_SAVE_DIR . DIRECTORY_SEPARATOR . $filename);
+        } else {
+            $response->getBody()->write('Failed image upload.');
+
+            return $response->withStatus(StatusCodeInterface::STATUS_INTERNAL_SERVER_ERROR)
+                ->withHeader('Content-Type', 'text/plain; charset=UTF-8');
         }
 
         $responseBody = json_encode(['message' => 'upload success']);
