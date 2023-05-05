@@ -39,6 +39,12 @@ class Apis {
 
         return data
     }
+
+    async getImageFiles(axiosconfig?: AxiosRequestConfig) {
+        const { data } = await axios.get<GetimageFilesResponse>(`${baseUrl}/api/image_files`, axiosconfig)
+
+        return data
+    }
 }
 
 const apis = new Apis()
@@ -59,4 +65,9 @@ export interface ApiResponse {
 
 export interface AuthApiResponse {
     token: string
+}
+
+export interface GetimageFilesResponse {
+    message: string
+    data: string[]
 }
