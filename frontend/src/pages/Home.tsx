@@ -1,7 +1,7 @@
 import { useState } from "react"
 import ImageGrid from "components/ImageGrid"
 import LoginPage from "./Login"
-import UplaodFileButton from "components/UploadFileButton"
+import UploadFileButton from "components/UploadFileButton"
 import Button from "components/Button"
 import apis, { PostImageRequest } from "lib/apis"
 import { toast } from "react-hot-toast"
@@ -13,6 +13,7 @@ const Home = () => {
         try {
             const req: PostImageRequest = {}
             if (file) {
+                console.log(file)
                 req.image = file
             }
             const response = await apis.postImage(req)
@@ -25,7 +26,7 @@ const Home = () => {
     return (
         <div>
             <LoginPage />
-            <UplaodFileButton image={ setFile } />
+            <UploadFileButton image={ setFile } />
             <Button label="送信" onClick={ submit } />
             <ImageGrid />
         </div>

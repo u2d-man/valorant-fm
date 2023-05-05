@@ -29,7 +29,7 @@ const useImageSelect = (onSelect: (file: File) => void) => {
     return { startSelect, destroy }
 }
 
-const UplaodFileButton = ({ image }: Props) => {
+const UploadFileButton = ({ image }: Props) => {
     const { startSelect, destroy } = useImageSelect(image)
     useEffect(() => destroy)
 
@@ -41,4 +41,4 @@ const UplaodFileButton = ({ image }: Props) => {
     )
 }
 
-export default UplaodFileButton
+export default UploadFileButton
