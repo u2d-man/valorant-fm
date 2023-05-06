@@ -4,8 +4,8 @@ interface Props {
 
 const ImageDisplay = ({ imageName }: Props) => {
     return (
-        <div className="rounded-lg shadow-md">
-            <img src={ `${process.env.PUBLIC_URL}/images/${imageName}` } alt="Logo" />
+        <div className="shadow-md">
+            <img className="rounded-lg" src={ `${process.env.PUBLIC_URL}/images/${imageName}` } alt="Logo" />
         </div>
     )
 }
