@@ -1,7 +1,7 @@
-import React from "react"
+import { ChangeEventHandler } from "react"
 
 interface Props {
-    onChangeFile: React.ChangeEventHandler<HTMLInputElement>
+    onChangeFile: ChangeEventHandler<HTMLInputElement>
 }
 
 const UploadFileButton = ({ onChangeFile }: Props) => {
