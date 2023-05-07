@@ -19,7 +19,7 @@ const customStyles = {
     },
 };
 
-const LoginPage = () => {
+const SignInPage = () => {
     const [show, setShow] = useState(false)
     const [id, setId] = useState('')
     const [password, setPassword] = useState('')
@@ -51,9 +51,9 @@ const LoginPage = () => {
     return (
         <div>
             <Header>
-                <div className="flex justify-end">
+                <div className="flex justify-end mx-4">
                     <Button label="SignUp" customClass="mr-5 text-white" onClick={ openModal }/>
-                    <Button label="LogIn" customClass="text-white" onClick={ openModal }/>
+                    <Button label="SingIn" customClass="text-white" onClick={ openModal }/>
                 </div>
             </Header>
             <Modal
@@ -75,4 +75,4 @@ const LoginPage = () => {
     )
 }
 
-export default LoginPage
+export default SignInPage
