@@ -1,10 +1,10 @@
 import ImageGrid from "components/ImageGrid"
-import LoginPage from "./Login"
 import Button from "components/Button"
 import UploadFileButton from "components/UploadFileButton"
 import { ChangeEvent, useState } from "react"
 import apis, { PostImageRequest } from "lib/apis"
 import { toast } from "react-hot-toast"
+import SignInPage from "./SignIn"
 
 const Home = () => {
     const [file, setFile] = useState<File | null>(null)
@@ -33,7 +33,7 @@ const Home = () => {
 
     return (
         <div>
-            <LoginPage />
+            <SignInPage />
             <UploadFileButton onChangeFile={ onChangeFile } />
             <Button
                 customClass="mx-auto m-10 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
