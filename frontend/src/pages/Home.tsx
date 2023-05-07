@@ -2,14 +2,14 @@ import ImageGrid from "components/ImageGrid"
 import LoginPage from "./Login"
 import Button from "components/Button"
 import UploadFileButton from "components/UploadFileButton"
-import { useState } from "react"
+import { ChangeEvent, useState } from "react"
 import apis, { PostImageRequest } from "lib/apis"
 import { toast } from "react-hot-toast"
 
 const Home = () => {
     const [file, setFile] = useState<File | null>(null)
 
-    const onChangeFile = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const onChangeFile = (e: ChangeEvent<HTMLInputElement>) => {
         const files = e.target.files
         if (files && files[0]) {
             setFile(files[0])
