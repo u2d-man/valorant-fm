@@ -2,6 +2,7 @@ import Home from 'pages/Home';
 import GuardedRoute from 'router/GuardedRoute';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { Toaster } from 'react-hot-toast';
+import Footer from 'components/Footer';
 
 const App = () => {
   return (
@@ -16,6 +17,7 @@ const App = () => {
           <Route path='/home' element={<Home />} />
         </Routes>
       </BrowserRouter>
+      <Footer />
     </div>
   );
 }
