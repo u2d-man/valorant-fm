@@ -1,12 +1,9 @@
 import apis, { PostAuthRequest } from "lib/apis"
 import { useState } from "react"
 import { toast } from "react-hot-toast"
-import Modal from "react-modal"
 import TextField from "components/TextField"
 import MyModal from "./MyModal"
 import Button from "./Button"
-
-Modal.setAppElement('#root')
 
 interface Props {
     show: boolean
@@ -31,7 +28,7 @@ const SignInModal = ({ show, setShow }: Props) => {
             if (response !== null && typeof response === "object") {
                 setShow(false)
             }
-            toast.success('signup success')
+            toast.success('signIn success')
         } catch (e: any) {
             toast.error(e.response.data)
         }

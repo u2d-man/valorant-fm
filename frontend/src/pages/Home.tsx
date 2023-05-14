@@ -7,6 +7,9 @@ import { toast } from "react-hot-toast"
 import Header from "components/Header"
 import SignInModal from "components/SignInModal"
 import SignUpModal from "components/SignUpModal"
+import ReactModal from "react-modal"
+
+ReactModal.setAppElement('#root')
 
 const Home = () => {
     const [show, setShow] = useState(false)

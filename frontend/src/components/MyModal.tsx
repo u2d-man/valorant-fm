@@ -7,8 +7,6 @@ interface Props {
     children: JSX.Element[]
 }
 
-Modal.setAppElement('#root')
-
 const customStyles = {
     content: {
       top: '50%',
@@ -26,7 +24,7 @@ const MyModal = ({ isOpen, onRequestClose, children }: Props) => {
             isOpen={ isOpen }
             onRequestClose={ onRequestClose }
             style={ customStyles }
-            contentLabel="Example Modal"
+            contentLabel="MyModal"
         >
             { children }
         </Modal>
