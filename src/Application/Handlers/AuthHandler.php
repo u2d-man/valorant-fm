@@ -16,13 +16,14 @@ use PDOException;
 class AuthHandler
 {
 
-    const AUTH_KEY = '../hiding/ec256-public.pem';
+    const AUTH_KEY = '../hiding/ec256-private.pem';
 
     public function __construct(
         private UserRepositoryInterface $userRepository,
         private SessionHelper $session,
         private LoggerInterface $logger
-    ) {}
+    ) {
+    }
 
     public function auth(Request $request, Response $response): Response
     {
@@ -35,8 +36,14 @@ class AuthHandler
 
             return $response->withStatus(StatusCodeInterface::STATUS_INTERNAL_SERVER_ERROR);
         }
-        $isVerify = password_verify($body['password'], $userDto->getPassword());
 
+        if (is_null($userDto)) {
+            $response->getBody()->write('The entered id could not be found.');
+
+            return $response->withStatus(StatusCodeInterface::STATUS_UNAUTHORIZED);
+        }
+
+        $isVerify = password_verify($body['password'], $userDto->getPassword());
         if (!$isVerify) {
             $newResponse = $response->withStatus(401);
             $newResponse->getBody()->write('you are not signed in');
