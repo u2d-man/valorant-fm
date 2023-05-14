@@ -1,32 +1,21 @@
 import Button from "components/Button"
-import Header from "components/Header"
 import Modal from "react-modal"
 import { useState } from "react"
 import TextField from "components/TextField"
 import apis, { PostAuthRequest } from "lib/apis"
 import { toast } from "react-hot-toast"
+import MyModal from "components/MyModal"
 
 Modal.setAppElement('#root')
 
-const customStyles = {
-    content: {
-      top: '50%',
-      left: '50%',
-      right: 'auto',
-      bottom: 'auto',
-      marginRight: '-50%',
-      transform: 'translate(-50%, -50%)',
-    },
-};
+interface Props {
+    show: boolean
+    setShow: React.Dispatch<React.SetStateAction<boolean>>
+}
 
-const SignInPage = () => {
-    const [show, setShow] = useState(false)
+const SignInPage = ({ show, setShow }: Props) => {
     const [id, setId] = useState('')
     const [password, setPassword] = useState('')
-
-    function openModal() {
-        setShow(true)
-    }
 
     function closeModal() {
         setShow(false);
@@ -50,17 +39,9 @@ const SignInPage = () => {
 
     return (
         <div>
-            <Header>
-                <div className="flex justify-end mx-4">
-                    <Button label="SignUp" customClass="mr-5 text-white" onClick={ openModal }/>
-                    <Button label="SingIn" customClass="text-white" onClick={ openModal }/>
-                </div>
-            </Header>
-            <Modal
+            <MyModal
                 isOpen={ show }
                 onRequestClose={ closeModal }
-                style={ customStyles }
-                contentLabel="Example Modal"
             >
                 <p className="text-lg text-left">Sign In</p>
                 <div className="block">
@@ -70,7 +51,7 @@ const SignInPage = () => {
                 <div className="flex justify-end">
                     <Button label="submit" customClass="mt-5" onClick={ submit }></Button>
                 </div>
-            </Modal>
+            </MyModal>
         </div>
     )
 }

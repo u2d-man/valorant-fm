@@ -4,10 +4,25 @@ import UploadFileButton from "components/UploadFileButton"
 import { ChangeEvent, useState } from "react"
 import apis, { PostImageRequest } from "lib/apis"
 import { toast } from "react-hot-toast"
-import SignInPage from "./SignIn"
+import Header from "components/Header"
+import SignInModal from "components/SignInModal"
+import SignUpModal from "components/SignUpModal"
+import ReactModal from "react-modal"
+
+ReactModal.setAppElement('#root')
 
 const Home = () => {
+    const [show, setShow] = useState(false)
+    const [regShow, regSetShow] = useState(false)
     const [file, setFile] = useState<File | null>(null)
+
+    function openSignInModal() {
+        setShow(true)
+    }
+
+    function openRegsterModal() {
+        regSetShow(true)
+    }
 
     const onChangeFile = (e: ChangeEvent<HTMLInputElement>) => {
         const files = e.target.files
@@ -33,7 +48,14 @@ const Home = () => {
 
     return (
         <div>
-            <SignInPage />
+            <Header>
+                <div className="flex justify-end mx-4">
+                    <Button label="SignUp" customClass="mr-5 text-white" onClick={ openRegsterModal }/>
+                    <Button label="SingIn" customClass="text-white" onClick={ openSignInModal }/>
+                </div>
+            </Header>
+            <SignInModal show={ show } setShow={ setShow } />
+            <SignUpModal show={ regShow } setShow={ regSetShow } />
             <UploadFileButton onChangeFile={ onChangeFile } />
             <Button
                 customClass="mx-auto m-10 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
