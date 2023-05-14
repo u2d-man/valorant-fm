@@ -24,6 +24,11 @@ class UserMeHandler
     public function getUserMe(Request $request, Response $response): Response
     {
         $loginId = $this->session->get('user_id');
+        if (is_null($loginId)) {
+            $response->getBody()->write('session expire or not signin');
+
+            return $response->withStatus(StatusCodeInterface::STATUS_UNAUTHORIZED);
+        }
         try {
             $user = $this->userRepository->getUser($loginId);
         } catch (PDOException $e) {
