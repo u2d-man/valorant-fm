@@ -20,7 +20,7 @@ const Home = () => {
         setShow(true)
     }
 
-    function openRegsterModal() {
+    function openRegisterModal() {
         regSetShow(true)
     }
 
@@ -50,7 +50,7 @@ const Home = () => {
         <div>
             <Header>
                 <div className="flex justify-end mx-4">
-                    <Button label="SignUp" customClass="mr-5 text-white" onClick={ openRegsterModal }/>
+                    <Button label="SignUp" customClass="mr-5 text-white" onClick={ openRegisterModal }/>
                     <Button label="SingIn" customClass="text-white" onClick={ openSignInModal }/>
                 </div>
             </Header>

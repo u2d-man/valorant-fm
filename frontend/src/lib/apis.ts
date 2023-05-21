@@ -26,6 +26,12 @@ class Apis {
         return data
     }
 
+    async getMe(axiosconfig?: AxiosRequestConfig) {
+        const { data } = await axios.get<GetMeResponse>(`${baseUrl}/api/user/me`, axiosconfig)
+
+        return data
+    }
+
     async postImage(req: PostImageRequest, axiosconfig?: AxiosRequestConfig) {
         const formData = new FormData()
 
@@ -68,6 +74,11 @@ export interface AuthApiResponse {
 }
 
 export interface GetimageFilesResponse {
+    message: string
+    data: string[]
+}
+
+export interface GetMeResponse {
     message: string
     data: string[]
 }
