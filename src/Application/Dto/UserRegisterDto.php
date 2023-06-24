@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace App\Domain\User;
+namespace App\Application\Dto;
 
 use JsonSerializable;
 
-class UserDto implements JsonSerializable
+class UserRegisterDto implements JsonSerializable
 {
     public function __construct(
         private readonly int $id,

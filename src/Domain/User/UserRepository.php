@@ -8,7 +8,9 @@ use PDO;
 
 class UserRepository implements UserRepositoryInterface
 {
-    public function __construct(private PDO $dbh) {}
+    public function __construct(private PDO $dbh)
+    {
+    }
 
     /*
      * {@inheritDoc}
@@ -23,7 +25,7 @@ class UserRepository implements UserRepositoryInterface
     /*
      * {@inheritDoc}
      */
-    public function getUser(string $loginId): UserDto|null
+    public function getUser(string $loginId): UserRegisterDto|null
     {
         $stmt = $this->dbh->prepare("SELECT * FROM users WHERE `login_id` = ?");
         $stmt->execute([$loginId]);
@@ -33,7 +35,7 @@ class UserRepository implements UserRepositoryInterface
             return null;
         }
 
-        return new UserDto(
+        return new UserRegisterDto(
             $user['id'],
             $user['login_id'],
             $user['password'],

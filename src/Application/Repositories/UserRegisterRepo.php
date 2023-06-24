@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Application\Repositories;
 
+use App\Application\Dto\UserRegisterDto;
 use App\Domain\User\UserDto;
 use PDO;
 
@@ -26,13 +27,12 @@ class UserRegisterRepo
         return $stmt->execute([$loginId, $password, $name]);
     }
 
-
     /**
      * @param string $loginId
      * 
-     * @return UserDto|null
+     * @return UserRegisterDto|null
      */
-    public function getUser(string $loginId): UserDto|null
+    public function getUser(string $loginId): UserRegisterDto|null
     {
         $stmt = $this->dbh->prepare("SELECT * FROM users WHERE `login_id` = ?");
         $stmt->execute([$loginId]);
@@ -42,7 +42,7 @@ class UserRegisterRepo
             return null;
         }
 
-        return new UserDto(
+        return new UserRegisterDto(
             $user['id'],
             $user['login_id'],
             $user['password'],
