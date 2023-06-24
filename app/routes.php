@@ -3,7 +3,7 @@
 declare(strict_types=1);
 
 use App\Application\Handlers\AuthHandler;
-use App\Application\Handlers\RegisterHandler;
+use App\Application\Handlers\UserRegisterHandler;
 use App\Application\Handlers\UserMeHandler;
 use App\Application\Handlers\ContentsUploadHandler;
 use App\Application\Handlers\ImageFilesHandler;
@@ -18,7 +18,7 @@ return function (App $app) {
     });
 
     // authentication
-    $app->post('/api/register', RegisterHandler::class . ':postRegister');
+    $app->post('/api/register', UserRegisterHandler::class . ':postRegister');
     $app->post('/api/auth', AuthHandler::class . ':auth');
     $app->get('/api/user/me', UserMeHandler::class . ':getUserMe');
 
