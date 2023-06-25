@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Application\Handlers;
 
-use App\Domain\User\UserRepositoryInterface;
+use App\Application\Services\AuthService;
 use Fig\Http\Message\StatusCodeInterface;
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
@@ -19,10 +19,11 @@ class AuthHandler
     const AUTH_KEY = '../hiding/ec256-private.pem';
 
     public function __construct(
-        private UserRepositoryInterface $userRepository,
-        private SessionHelper $session,
+        private AuthService     $authService,
+        private SessionHelper   $session,
         private LoggerInterface $logger
-    ) {
+    )
+    {
     }
 
     public function auth(Request $request, Response $response): Response
@@ -30,7 +31,7 @@ class AuthHandler
         $body = $request->getParsedBody();
         $loginId = $body['login_id'];
         try {
-            $userDto = $this->userRepository->getUser($loginId);
+            $userDto = $this->authService->getUser($loginId);
         } catch (PDOException $e) {
             $this->logger->error('db error:' . $e->errorInfo[2]);
 
@@ -59,9 +60,9 @@ class AuthHandler
         $authKey = file_get_contents(self::AUTH_KEY);
         $jwt = JWT::encode($payload, $authKey, 'HS256');
 
-        $responsebody = json_encode(['token' => $jwt]);
+        $responseBody = json_encode(['token' => $jwt]);
         $this->session->set('user_id', $loginId);
-        $response->getBody()->write($responsebody);
+        $response->getBody()->write($responseBody);
 
         return $response->withHeader('Content-Type', 'application/json; charset=UTF-8');
     }

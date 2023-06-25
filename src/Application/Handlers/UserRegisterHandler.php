@@ -4,20 +4,21 @@ declare(strict_types=1);
 
 namespace App\Application\Handlers;
 
-use App\Domain\User\UserRepositoryInterface;
+use App\Application\Services\UserRegisterService;
 use Fig\Http\Message\StatusCodeInterface;
-use PDOException;
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
 use Psr\Log\LoggerInterface;
+use PDOException;
 
 // user register
-class RegisterHandler
+class UserRegisterHandler
 {
     public function __construct(
-        private UserRepositoryInterface $userRepository,
+        private UserRegisterService $userRegisterService,
         private LoggerInterface $logger
-    ) {}
+    ) {
+    }
 
     public function postRegister(Request $request, Response $response): Response
     {
@@ -32,7 +33,7 @@ class RegisterHandler
         $password = password_hash($body['password'], PASSWORD_DEFAULT);
 
         try {
-            $_ = $this->userRepository->InsertUser($body['login_id'], $password, $body['login_id']);
+            $_ = $this->userRegisterService->insertUser($body['login_id'], $password, $body['login_id']);
         } catch (PDOException $e) {
             $this->logger->error('db error:' . $e->errorInfo[2]);
 
