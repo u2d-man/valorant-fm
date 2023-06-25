@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Domain\User;
 
+use App\Application\Dto\UserRegisterDto;
 use PDO;
 
 class UserRepository implements UserRepositoryInterface
