@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace App\Application\Repositories;
 
 use App\Application\Dto\UserRegisterDto;
-use App\Domain\User\UserDto;
 use PDO;
 
 class UserRegisterRepo
@@ -17,10 +16,11 @@ class UserRegisterRepo
     /**
      * @param string $loginId
      * @param string $password
-     * 
+     * @param string $name
+     *
      * @return bool
      */
-    public function InsertUser(string $loginId, string $password, string $name): bool
+    public function insertUser(string $loginId, string $password, string $name): bool
     {
         $stmt = $this->dbh->prepare("INSERT INTO users (`login_id`, `password`, `name`) VALUES (?, ?, ?)");
 
