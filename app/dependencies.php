@@ -2,6 +2,7 @@
 
 declare(strict_types=1);
 
+use App\Libs\JsonEncoder;
 use App\Application\Settings\SettingsInterface;
 use DI\ContainerBuilder;
 use Monolog\Handler\StreamHandler;
@@ -42,8 +43,11 @@ return function (ContainerBuilder $containerBuilder) {
 
             return $pdo;
         },
-        SessionHelper::class => function (ContainerInterface $c): SessionHelper {
+        SessionHelper::class => function (): SessionHelper {
             return new SessionHelper();
         },
+        JsonEncoder::class => function (): JsonEncoder {
+            return new JsonEncoder();
+        }
     ]);
 };
