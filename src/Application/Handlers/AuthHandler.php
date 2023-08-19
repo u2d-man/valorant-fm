@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Application\Handlers;
 
+use App\Libs\JsonEncoder;
 use App\Application\Services\AuthService;
 use Fig\Http\Message\StatusCodeInterface;
 use Psr\Http\Message\ResponseInterface as Response;
@@ -15,15 +16,14 @@ use PDOException;
 
 class AuthHandler
 {
-
     const AUTH_KEY = '../hiding/ec256-private.pem';
 
     public function __construct(
         private AuthService     $authService,
         private SessionHelper   $session,
-        private LoggerInterface $logger
-    )
-    {
+        private LoggerInterface $logger,
+        private JsonEncoder $jsonEncoder
+    ) {
     }
 
     public function auth(Request $request, Response $response): Response
@@ -60,7 +60,7 @@ class AuthHandler
         $authKey = file_get_contents(self::AUTH_KEY);
         $jwt = JWT::encode($payload, $authKey, 'HS256');
 
-        $responseBody = json_encode(['token' => $jwt]);
+        $responseBody = $this->jsonEncoder->encode(['token' => $jwt]);
         $this->session->set('user_id', $loginId);
         $response->getBody()->write($responseBody);
 
